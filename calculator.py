@@ -17,11 +17,11 @@ def create_section(section_name):
     
     col1, col2, col3 = st.columns(3)
     with col1:
-        normal_shifts = st.number_input(f"Normal shifts", value=0.0, step=1.0, key=f"normal_{section_name}")
+        normal_shifts = st.number_input(f"Normal shifts", value=0.0, step=1.0, min_value=0.0, key=f"normal_{section_name}")
     with col2:
-        first_call = st.number_input(f"1st call on site shifts", value=0.0, step=1.0, key=f"first_{section_name}")
+        first_call = st.number_input(f"1st call on site shifts", value=0.0, step=1.0, min_value=0.0, key=f"first_{section_name}")
     with col3:
-        second_call = st.number_input(f"2nd call off site shifts", value=0.0, step=1.0, key=f"second_{section_name}")
+        second_call = st.number_input(f"2nd call off site shifts", value=0.0, step=1.0, min_value=0.0, key=f"second_{section_name}")
     
     # Calculate and display the section sum - 2nd call multiplied by 0.3
     section_sum = normal_shifts*8 + first_call * 8 + second_call * 8 * 0.3
