@@ -35,7 +35,7 @@ def create_section(section_name):
 sections = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"]
 section_sums = {}
 
-st.header("📋 Input Section")
+# st.header("📋 Input Section")
 for section in sections:
     section_sums[section] = create_section(section)
     st.divider()  # Adds a visual separator between sections
@@ -48,10 +48,10 @@ st.header("📈 Weekly hours")
 # Create a DataFrame for the results table
 results_data = []
 for section, subtotal in st.session_state.results.items():
-    results_data.append({"Section": section, "Subtotal": subtotal})
+    results_data.append({"Weeks": section, "Hours": subtotal})
 
 # Add the grand total row
-results_data.append({"Section": "**TOTAL**", "Subtotal": f"**{grand_total}**"})
+results_data.append({"Section": "Month's hours", "Subtotal": f"**{grand_total}**"})
 
 results_df = pd.DataFrame(results_data)
 
