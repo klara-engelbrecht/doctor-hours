@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 
 # Set up the page
-st.set_page_config(page_title="Multi-Section Adder", layout="wide")
-st.title("🧮 Overtime calculator")
+st.set_page_config(page_title="Doctor Overtime Calculator", layout="wide")
+st.title("🧮 Doctor Overtime Calculator")
 
 # Initialize a dictionary to store all results
 if 'results' not in st.session_state:
@@ -13,15 +13,13 @@ if 'results' not in st.session_state:
 def create_section(section_name):
     st.subheader(f"{section_name}")
     
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3 = st.columns(3)
     with col1:
-        x = st.number_input(f"Hours for {section_name} - Day 1", value=0.0, step=1.0, key=f"x_{section_name}")
+        x = st.number_input(f"Normal shifts", value=0.0, step=1.0, key=f"x_{section_name}")
     with col2:
-        y = st.number_input(f"Hours for {section_name} - Day 2", value=0.0, step=1.0, key=f"y_{section_name}")
+        y = st.number_input(f"1st call on site shifts", value=0.0, step=1.0, key=f"z_{section_name}")
     with col3:
-        z = st.number_input(f"Hours for {section_name} - Day 3", value=0.0, step=1.0, key=f"z_{section_name}")
-    with col4:
-        w = st.number_input(f"Hours for {section_name} - Day 4", value=0.0, step=1.0, key=f"w_{section_name}")
+        y = st.number_input(f"2nd call off site shifts", value=0.0, step=1.0, key=f"w_{section_name}")
     
     # Calculate and display the section sum (now including all 4 variables)
     section_sum = x + y + z + w
