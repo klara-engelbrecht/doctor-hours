@@ -5,6 +5,8 @@ import pandas as pd
 st.set_page_config(page_title="Doctor Overtime Calculator", layout="wide")
 st.title("🧮 Doctor Overtime Calculator")
 
+st.info("ℹ️ This web-app helps you calculate the number of hours you worked in a month. Please provide the number of each shift type you worked per week.")
+
 # Initialize a dictionary to store all results
 if 'results' not in st.session_state:
     st.session_state.results = {}
@@ -22,7 +24,7 @@ def create_section(section_name):
         second_call = st.number_input(f"2nd call off site shifts", value=0.0, step=1.0, key=f"second_{section_name}")
     
     # Calculate and display the section sum - 2nd call multiplied by 0.3
-    section_sum = normal_shifts + first_call + (second_call * 0.3)
+    section_sum = normal_shifts*8 + first_call * 8 + second_call * 8 * 0.3
     st.success(f"**{section_name} total hours: {section_sum:.1f}**")
     
     # Store the result in the session state
@@ -57,6 +59,3 @@ st.metric(label="📊 Total hours for the month", value=f"{grand_total:.1f}")
 
 # Optional: Also display the total as bold text using markdown
 st.markdown(f"**📅 Month's total hours: {grand_total:.1f}**")
-
-# Add explanation about the calculation
-st.info("ℹ️ Note: 2nd call off-site shifts are calculated at 30% of their entered value.")
